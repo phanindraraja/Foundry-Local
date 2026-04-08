@@ -1,9 +1,8 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { getTestManager } from '../testUtils.js';
+import { getTestManager, EMBEDDING_MODEL_ALIAS } from '../testUtils.js';
 
 describe('Embedding Client Tests', () => {
-    const EMBEDDING_MODEL_ALIAS = 'qwen3-0.6b-embedding';
 
     it('should generate embedding', async function() {
         this.timeout(30000);
@@ -14,7 +13,7 @@ describe('Embedding Client Tests', () => {
         expect(cachedModels.length).to.be.greaterThan(0);
 
         const cachedVariant = cachedModels.find(m => m.alias === EMBEDDING_MODEL_ALIAS);
-        expect(cachedVariant, 'qwen3-0.6b-embedding should be cached').to.not.be.undefined;
+        expect(cachedVariant, 'qwen3-0.6b-embedding-generic-cpu should be cached').to.not.be.undefined;
 
         const model = await catalog.getModel(EMBEDDING_MODEL_ALIAS);
         expect(model).to.not.be.undefined;
