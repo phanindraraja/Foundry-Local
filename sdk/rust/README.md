@@ -354,6 +354,28 @@ let client = model.create_chat_client()
     .response_format(ChatResponseFormat::LarkGrammar(grammar.to_string()));
 ```
 
+### Embeddings
+
+Generate text embeddings using the `EmbeddingClient`:
+
+```rust
+let embedding_client = model.create_embedding_client();
+
+let response = embedding_client
+    .generate_embedding("The quick brown fox jumps over the lazy dog")
+    .await?;
+let embedding = &response.data[0].embedding; // Vec<f64>
+println!("Dimensions: {}", embedding.len());
+```
+
+#### Embedding Settings
+
+```rust
+let embedding_client = model.create_embedding_client()
+    .dimensions(512)              // optional: reduce dimensionality
+    .encoding_format("float");    // "float" or "base64"
+```
+
 ### Audio Transcription
 
 Transcribe audio files locally using the `AudioClient`:
@@ -379,28 +401,6 @@ let mut stream = audio_client.transcribe_streaming("recording.wav").await?;
 while let Some(chunk) = stream.next().await {
     print!("{}", chunk?.text);
 }
-```
-
-### Embeddings
-
-Generate text embeddings using the `EmbeddingClient`:
-
-```rust
-let embedding_client = model.create_embedding_client();
-
-let response = embedding_client
-    .generate_embedding("The quick brown fox jumps over the lazy dog")
-    .await?;
-let embedding = &response.data[0].embedding; // Vec<f64>
-println!("Dimensions: {}", embedding.len());
-```
-
-#### Embedding Settings
-
-```rust
-let embedding_client = model.create_embedding_client()
-    .dimensions(512)              // optional: reduce dimensionality
-    .encoding_format("float");    // "float" or "base64"
 ```
 
 ### Embedded Web Service

@@ -205,23 +205,6 @@ for await (const chunk of chatClient.completeStreamingChat(
 }
 ```
 
-### Audio Transcription
-
-Transcribe audio files locally using the `AudioClient`:
-
-```typescript
-const audioClient = model.createAudioClient();
-audioClient.settings.language = 'en';
-
-// Synchronous transcription
-const result = await audioClient.transcribe('/path/to/audio.wav');
-
-// Streaming transcription
-for await (const chunk of audioClient.transcribeStreaming('/path/to/audio.wav')) {
-    console.log(chunk);
-}
-```
-
 ### Embeddings
 
 Generate text embeddings using the `EmbeddingClient`:
@@ -241,6 +224,23 @@ console.log(`Dimensions: ${embedding.length}`);
 ```typescript
 embeddingClient.settings.dimensions = 512;         // optional: reduce dimensionality
 embeddingClient.settings.encodingFormat = 'float';  // 'float' or 'base64'
+```
+
+### Audio Transcription
+
+Transcribe audio files locally using the `AudioClient`:
+
+```typescript
+const audioClient = model.createAudioClient();
+audioClient.settings.language = 'en';
+
+// Synchronous transcription
+const result = await audioClient.transcribe('/path/to/audio.wav');
+
+// Streaming transcription
+for await (const chunk of audioClient.transcribeStreaming('/path/to/audio.wav')) {
+    console.log(chunk);
+}
 ```
 
 ### Embedded Web Service
