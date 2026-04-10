@@ -1,5 +1,5 @@
 [package]
-name = "native-embeddings"
+name = "embeddings"
 version = "0.1.0"
 edition = "2021"
 description = "Native SDK embeddings (single and batch) using the Foundry Local Rust SDK"

@@ -4,7 +4,7 @@ members = [
     "tool-calling-foundry-local",
     "native-chat-completions",
     "audio-transcription-example",
-    "native-embeddings",
+    "embeddings",
     "tutorial-chat-assistant",
     "tutorial-document-summarizer",
     "tutorial-tool-calling",
